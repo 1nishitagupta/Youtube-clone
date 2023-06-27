@@ -4,7 +4,7 @@ import { Stack, Box } from "@mui/material";
 import { ChannelCard, Loader, VideoCard } from "./";
 
 const Videos = ({ videos, direction }) => {
-  console.log(videos);
+  console.log(videos, "videos");
   return (
     <Stack
       direction={direction || "row"}
@@ -13,8 +13,8 @@ const Videos = ({ videos, direction }) => {
       alignItems="start"
       gap={2}
     >
-      {videos.map((item, idx) => (
-        <Box key={idx}>
+      {videos?.map((item, idx) => (
+        <Box key={idx} width={{ xs: "100%", md: "auto" }}>
           {item?.videoId && <VideoCard video={item} />}
           {/* {item?.channelId && <ChannelCard channelDetail={item} />} */}
         </Box>

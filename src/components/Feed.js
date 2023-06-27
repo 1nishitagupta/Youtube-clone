@@ -7,12 +7,10 @@ const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
   const [videos, setVideos] = useState([]);
   useEffect(() => {
-    // setVideos(null);
-    fetchFromAPI(`search?part=snippet&query=${selectedCategory}`).then(
-      (data) => {
-        setVideos(data?.data);
-      }
-    );
+    setVideos(null);
+    fetchFromAPI(`search?query=${selectedCategory}`).then((data) => {
+      setVideos(data?.data);
+    });
   }, [selectedCategory]);
 
   return (
