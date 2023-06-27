@@ -38,7 +38,7 @@ const VideoCard = ({
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
         <CardMedia
           image={thumbnail[0].url}
-          sx={{ width: { xs: "100%", md: 360 }, height: 200 }}
+          sx={{ width: { xs: "100%", md: 380 }, height: 200 }}
         />
         <CardContent sx={{ backgroundColor: "#1e1e1e", height: "100px" }}>
           <Box>
