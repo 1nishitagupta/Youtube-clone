@@ -11,7 +11,7 @@ const ChannelDetail = () => {
       setChannelDetail(data?.meta);
     });
   }, [id]);
-  console.log(channelDetail);
+
   return <div>ChannelDetail</div>;
 };
 
