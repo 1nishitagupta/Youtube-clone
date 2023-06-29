@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { Sidebar, Videos } from ".";
+
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { Videos, Sidebar } from "./";
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState(null);
+
   useEffect(() => {
     setVideos(null);
-    fetchFromAPI(`search?query=${selectedCategory}`).then((data) => {
-      setVideos(data?.data);
-    });
+
+    fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) =>
+      setVideos(data.items)
+    );
   }, [selectedCategory]);
 
   return (
@@ -35,31 +38,17 @@ const Feed = () => {
           Copyright © 2022 JSM Media
         </Typography>
       </Box>
-      <Box
-        p={2}
-        sx={{
-          overflowY: "auto",
-          height: "90vh",
-          flex: 2,
-        }}
-      >
+
+      <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
         <Typography
           variant="h4"
-          mb={2}
           fontWeight="bold"
-          sx={{ color: "#fff" }}
+          mb={2}
+          sx={{ color: "white" }}
         >
-          {selectedCategory}
-          <span
-            style={{
-              color: "#f31503",
-              fontweight: "bold",
-            }}
-          >
-            {" "}
-            Videos
-          </span>
+          {selectedCategory} <span style={{ color: "#FC1503" }}>videos</span>
         </Typography>
+
         <Videos videos={videos} />
       </Box>
     </Stack>
